@@ -92,7 +92,7 @@ export const PdfCompressModal: React.FC<PdfCompressModalProps> = ({
             const ctx = canvas.getContext('2d');
 
             if (ctx) {
-              await page.render({ canvasContext: ctx, viewport, canvas: canvas as any }).promise;
+              await (page.render as any)({ canvasContext: ctx, viewport, canvas }).promise;
               const jpegDataUrl = canvas.toDataURL('image/jpeg', qualityConfig.quality);
               const imgBytes = await fetch(jpegDataUrl).then((r) => r.arrayBuffer());
               const embeddedImg = await outPdf.embedJpg(imgBytes);
