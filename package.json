@@ -11,8 +11,8 @@
     "start": "node dist/server.cjs",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
-    "pack:win": "bun run build && electron-builder --win --dir",
-    "pack:mac": "bun run build && electron-builder --mac zip"
+    "pack:win": "npm run build && electron-builder --win --dir",
+    "pack:mac": "npm run build && electron-builder --mac zip"
   },
   "build": {
     "appId": "com.mianay.office",
@@ -54,6 +54,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
     "@types/node": "^22.13.4",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
@@ -63,7 +64,7 @@
     "electron-builder": "^25.1.8",
     "esbuild": "^0.25.0",
     "postcss": "^8.5.2",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.0.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
     "vite": "^5.4.14"
