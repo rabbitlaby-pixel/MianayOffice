@@ -2,9 +2,11 @@ name: Build and Release
 
 on:
   push:
+    branches:
+      - main
     tags:
-      - 'v*' # 当推送形如 v1.0.0 的 tag 时触发打包发布
-  workflow_dispatch: # 支持在 GitHub 页面上手动点击运行
+      - 'v*'
+  workflow_dispatch:
 
 jobs:
   release:
@@ -18,23 +20,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          bun-version: latest
+          node-version: 20
 
       - name: Install dependencies
-        run: bun install
+        run: npm install
 
       - name: Build and Pack for Windows
         if: matrix.os == 'windows-latest'
-        run: bun run pack:win
+        run: npm run pack:win
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and Pack for Mac
         if: matrix.os == 'macos-latest'
-        run: bun run pack:mac
+        run: npm run pack:mac
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
