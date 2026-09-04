@@ -11,8 +11,8 @@
     "start": "node dist/server.cjs",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
-    "pack:win": "npm run build && electron-builder --win --dir",
-    "pack:mac": "npm run build && electron-builder --mac zip"
+    "pack:win": "bun run build && electron-builder --win --dir",
+    "pack:mac": "bun run build && electron-builder --mac zip"
   },
   "build": {
     "appId": "com.mianay.office",
@@ -49,7 +49,6 @@
     }
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.0",
     "lucide-react": "^0.475.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
